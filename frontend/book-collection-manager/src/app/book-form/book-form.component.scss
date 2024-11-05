@@ -1,0 +1,53 @@
+.book-form-card {
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 20px;
+}
+
+mat-card-header {
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+mat-card-title {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+mat-form-field {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+mat-card-actions {
+  display: flex;
+  justify-content: center;
+  padding: 0;
+}
+
+button {
+  margin: 0 10px;
+}
+
+@media (max-width: 600px) {
+  .book-form-card {
+    max-width: 90%;
+    margin: 10px auto;
+    padding: 15px;
+  }
+
+  mat-card-title {
+    font-size: 20px;
+  }
+
+  button {
+    margin: 5px;
+  }
+}

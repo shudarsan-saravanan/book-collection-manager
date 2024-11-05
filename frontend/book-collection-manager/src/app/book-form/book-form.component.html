@@ -1,1 +1,50 @@
-<p>book-form works!</p>
+<mat-card class="book-form-card">
+  <mat-card-header>
+    <mat-card-title>Enter the book details</mat-card-title>
+    <button
+      mat-raised-button
+      matTooltip="View the list of books"
+      color="gray"
+      (click)="bookList()"
+    >
+      <mat-icon>toc</mat-icon>
+    </button>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
+      <mat-form-field>
+        <mat-label>Title</mat-label>
+        <input matInput formControlName="title" />
+        <mat-error *ngIf="bookForm.controls['title'].invalid">
+          Title is required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Author</mat-label>
+        <input matInput formControlName="author" />
+        <mat-error *ngIf="bookForm.controls['author'].invalid">
+          Author is required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Genre</mat-label>
+        <input matInput formControlName="genre" />
+      </mat-form-field>
+    </form>
+  </mat-card-content>
+  <mat-card-actions>
+    <button
+      [disabled]="!bookForm.valid"
+      mat-raised-button
+      color="primary"
+      (click)="onSubmit()"
+    >
+      Save
+    </button>
+    <button mat-raised-button color="warn" (click)="clearForm()">
+      Clear data
+    </button>
+  </mat-card-actions>
+</mat-card>
