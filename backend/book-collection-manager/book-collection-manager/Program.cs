@@ -11,6 +11,13 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<BookDbContext>((options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("sqlconnectionstring"))));
+builder.Services.AddCors((corsOptions) =>
+{
+    corsOptions.AddPolicy("Mypolicy", (policyOptions) =>
+    {
+        policyOptions.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod();
+    });
+});
 
 var app = builder.Build();
 
@@ -20,6 +27,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors("Mypolicy");
 
 app.UseAuthorization();
 
