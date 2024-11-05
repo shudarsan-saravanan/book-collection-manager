@@ -6,7 +6,7 @@ Book Collection Manager is a web application that manages a collection of Books.
 
 ## Requirements
 
-Please refer [here]() for the requirements.
+Please refer [here](<Case%20Study%20FS%20Developer%20(1).pdf>) for the requirements.
 
 ## Features
 
@@ -56,7 +56,7 @@ Please refer [here]() for the requirements.
 
 - Open `http://localhost:4200` on your browser
 
-## Configuration Setup:
+## Configuration Setup
 
 I was not able to dynamically configure the environment variables for the database connection strings because of time constraints. A more optimised approach will be part of the future improvements. For time being, I kindly request to modify the below few changes in the code before starting the application.
 
