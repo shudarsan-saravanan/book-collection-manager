@@ -18,6 +18,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { BookService } from '../book-service.service';
 import { Book } from '../models/book.model';
 
+/**
+ * A component to accept user input through a reactive form to store the books
+ */
 @Component({
   selector: 'app-book-form',
   standalone: true,
@@ -52,6 +55,9 @@ export class BookFormComponent {
     });
   }
 
+  /**
+   * Function to support a POST request when a user wants to add details of the book to the colletion
+   */
   onSubmit(): void {
     if (this.bookForm.valid) {
       const bookDetails: Book = this.bookForm.value;

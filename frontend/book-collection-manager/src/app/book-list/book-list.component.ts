@@ -12,6 +12,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { BookService } from '../book-service.service';
 
+/**
+ * A component which serves the purpose to display all the items in the list in a table
+ */
 @Component({
   selector: 'app-book-list',
   standalone: true,
@@ -35,6 +38,9 @@ export class BookListComponent {
 
   constructor(private bookService: BookService, private router: Router) {}
 
+  /**
+   * Using the component lifecycle to make a intial API GET request to load the books if any in the table
+   */
   ngOnInit(): void {
     this.loadBooks();
   }

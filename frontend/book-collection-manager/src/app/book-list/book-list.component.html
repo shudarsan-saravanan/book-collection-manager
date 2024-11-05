@@ -13,79 +13,93 @@
       </button>
     </mat-card-header>
     <mat-card-content>
-      <table mat-table [dataSource]="books" class="mat-elevation-z8">
-        <ng-container matColumnDef="title">
-          <th mat-header-cell *matHeaderCellDef>Title</th>
-          <td mat-cell *matCellDef="let book">
-            <ng-container *ngIf="!isEditMode(book.id); else editTitle">
-              {{ book.title }}
-            </ng-container>
-            <ng-template #editTitle>
-              <input matInput [(ngModel)]="book.title" />
-            </ng-template>
-          </td>
-        </ng-container>
+      <ng-container *ngIf="books.length > 0; else noBooks">
+        <table mat-table [dataSource]="books" class="mat-elevation-z8">
+          <ng-container matColumnDef="title">
+            <th mat-header-cell *matHeaderCellDef>Title</th>
+            <td mat-cell *matCellDef="let book">
+              <ng-container *ngIf="!isEditMode(book.id); else editTitle">
+                {{ book.title }}
+              </ng-container>
+              <ng-template #editTitle>
+                <input matInput [(ngModel)]="book.title" />
+              </ng-template>
+            </td>
+          </ng-container>
 
-        <ng-container matColumnDef="author">
-          <th mat-header-cell *matHeaderCellDef>Author</th>
-          <td mat-cell *matCellDef="let book">
-            <ng-container *ngIf="!isEditMode(book.id); else editAuthor">
-              {{ book.author }}
-            </ng-container>
-            <ng-template #editAuthor>
-              <input matInput [(ngModel)]="book.author" />
-            </ng-template>
-          </td>
-        </ng-container>
+          <ng-container matColumnDef="author">
+            <th mat-header-cell *matHeaderCellDef>Author</th>
+            <td mat-cell *matCellDef="let book">
+              <ng-container *ngIf="!isEditMode(book.id); else editAuthor">
+                {{ book.author }}
+              </ng-container>
+              <ng-template #editAuthor>
+                <input matInput [(ngModel)]="book.author" />
+              </ng-template>
+            </td>
+          </ng-container>
 
-        <ng-container matColumnDef="genre">
-          <th mat-header-cell *matHeaderCellDef>Genre</th>
-          <td mat-cell *matCellDef="let book">
-            <ng-container *ngIf="!isEditMode(book.id); else editGenre">
-              {{ book.genre }}
-            </ng-container>
-            <ng-template #editGenre>
-              <input matInput [(ngModel)]="book.genre" />
-            </ng-template>
-          </td>
-        </ng-container>
+          <ng-container matColumnDef="genre">
+            <th mat-header-cell *matHeaderCellDef>Genre</th>
+            <td mat-cell *matCellDef="let book">
+              <ng-container *ngIf="!isEditMode(book.id); else editGenre">
+                {{ book.genre }}
+              </ng-container>
+              <ng-template #editGenre>
+                <input matInput [(ngModel)]="book.genre" />
+              </ng-template>
+            </td>
+          </ng-container>
 
-        <ng-container matColumnDef="actions">
-          <th mat-header-cell *matHeaderCellDef>Actions</th>
-          <td mat-cell *matCellDef="let book">
-            <button
-              *ngIf="!isEditMode(book.id)"
-              mat-raised-button
-              matTooltip="Edit the details"
-              color="primary"
-              (click)="toggleEditMode(book.id)"
-            >
-              <mat-icon>edit</mat-icon>
-            </button>
-            <button
-              *ngIf="isEditMode(book.id)"
-              mat-raised-button
-              matTooltip="Save"
-              color="primary"
-              (click)="saveChanges(book)"
-            >
-              <mat-icon>save</mat-icon>
-            </button>
-            <button
-              *ngIf="isEditMode(book.id)"
-              mat-raised-button
-              matTooltip="Cancel"
-              color="warn"
-              (click)="toggleEditMode(book.id, true)"
-            >
-              <mat-icon>cancel</mat-icon>
-            </button>
-          </td>
-        </ng-container>
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef>Actions</th>
+            <td mat-cell *matCellDef="let book">
+              <button
+                *ngIf="!isEditMode(book.id)"
+                mat-raised-button
+                matTooltip="Edit the details"
+                color="primary"
+                (click)="toggleEditMode(book.id)"
+              >
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button
+                *ngIf="isEditMode(book.id)"
+                mat-raised-button
+                matTooltip="Save"
+                color="primary"
+                (click)="saveChanges(book)"
+              >
+                <mat-icon>save</mat-icon>
+              </button>
+              <button
+                *ngIf="isEditMode(book.id)"
+                mat-raised-button
+                matTooltip="Cancel"
+                color="warn"
+                (click)="toggleEditMode(book.id, true)"
+              >
+                <mat-icon>cancel</mat-icon>
+              </button>
+            </td>
+          </ng-container>
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-      </table>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+          <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="4">No books found</td>
+          </tr>
+        </table>
+      </ng-container>
+      <ng-template #noBooks>
+        <div>
+          <span>
+            No books found in your collection.
+            <mat-icon>library_books</mat-icon>
+          </span>
+        </div>
+      </ng-template>
     </mat-card-content>
   </mat-card>
 </div>
